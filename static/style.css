@@ -1,0 +1,42 @@
+.test{
+    height: 600px;
+    width: 1000px;
+}
+
+.box{
+    border: 5px solid black;
+    height: 100px;
+    width: auto;
+    text-align: center;
+    color: #800000;
+    font-size: 16pt;
+}
+
+ol{
+  text-align: center;
+}
+
+li{
+  font-size: 14pt;
+}
+
+h2{
+  float: right;
+  font-size: 24pt;
+  padding-top: 10px;
+  text-align: center;
+}
+
+h1{
+  font-size: 50pt;
+  text-align: center;
+}
+
+h3{
+  text-align: center;
+  
+}
+
+body{
+  background-color: #FEEB74;
+}

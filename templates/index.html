@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <link rel="stylesheet" href='../static/style.css' type='text/css'/>
+    </head>
+    <body>
+    
+         <h1>
+           {{tit}}
+           <p style="font-size: 12pt; text-align: center;">
+            {{sourc}}
+            </p>
+         </h1>
+         <h3>
+          Total time: {{minutes}} mins&emsp;&emsp;&emsp;&emsp;Servings: {{servin}}
+         </h3>
+         <section>
+          <div class="test">
+            <p style="float: left;display: flex;">
+               <img src={{lin}}>
+             </p>
+            <h2>
+              Ingredients:
+                <ol>
+                    {%for i in range(0, len)%}
+                    <li>{{ingredAmount[i]}}&nbsp;{{ingred[i]}}</li>
+                    {%endfor%}
+                </ol>
+            </h2>
+          </div>
+        </section>
+        
+        <div class="box">
+          <p>
+            {{ftweet}}
+          </p>
+        </div>
+        
+
+    </body>
+    
+</html>
