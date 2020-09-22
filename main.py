@@ -25,11 +25,9 @@ auth_api = API(auth)
 
 
 
-tweets = Cursor(auth_api.search, q=searchQuery, lang="en").items(5)#get 5 tweets with keyword in it
+tweets = Cursor(auth_api.search, q=searchQuery, lang="en").items(1)#get 5 tweets with keyword in it
 for tweet in tweets:
-    if keywordList[num] in tweet.text:#if the tweet contains the keyword, not the @
-        tweety = "'{}' -@{} {}".format(tweet.text, tweet.user.screen_name, tweet.created_at)#format tweet info
-        break
+    tweety = "'{}' -@{} {}".format(tweet.text, tweet.user.screen_name, tweet.created_at)#format tweet info
 
 #Spoonacular--------------------------------------------------------------------------------------------------------------
 
@@ -56,7 +54,7 @@ totTime = res['readyInMinutes']
 ingred = []
 ingredAmount = []
 
-#for loop
+#for loop to parse
 for i in range(len(res['extendedIngredients'])):
     ingred.append(res['extendedIngredients'][i]['name']) #get name of ingredient
     ingredAmount.append(str(res['extendedIngredients'][i]['measures']['us']['amount']) + res['extendedIngredients'][i]['measures']['us']['unitShort']) #get amount of ingredient
