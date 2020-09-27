@@ -8,12 +8,17 @@ import spoonacular as sp
 import requests
 import flask
 import random
+from os.path import join, dirname
+from dotenv import load_dotenv
 
 
 keywordList = ["pasta", "pizza", "soup", "cake", "cookies", "rice", "steak", "chicken", "ham", "kebab", "egg", "bagel"]#list of keywords to use
 num = random.randint(0, 11)#random generator to choose which to search for
 searchQuery = keywordList[num] + " -filter:links"#build the search query for tweepy
 #Twitter--------------------------------------------------------------------------------------------------------------
+
+dotenv_path = join(dirname(__file__), 'keys.env')
+load_dotenv(dotenv_path)
 
 consumer_key = os.environ['CONSUMER_KEY']
 consumer_secret = os.environ['CONSUMER_SECRET']
