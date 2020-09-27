@@ -14,17 +14,37 @@ To use this code, you must follow these steps:
     (or) pip3 install tweepy
 5. Install flask using the same process as above ([sudo] pip[3] install flask)
 6. Install spoonacular using the same process as above ([sudo] pip[3] install spoonacular)
-7. Navigtate to spoonacular.com/food-api
-8. Create an account and save your api key
-9. Clone this repository by using git clone https://github.com/NJIT-CS490/project1-nsb38
-10. Add all of your keys (from steps 2 & 9) by making a new root-level file called keys.env and populating it as follows:
+7. Install python-dotenv using the same process as above ([sudo] pip[3] install python-dotenv)
+8. Navigtate to spoonacular.com/food-api
+9. Create an account and save your api key
+10. Clone this repository by using git clone https://github.com/NJIT-CS490/project1-nsb38
+11. Add all of your keys (from steps 3 & 9) by making a new root-level file called keys.env and populating it as follows:
     export SPOON_KEY=''
     export CONSUMER_KEY=''
     export CONSUMER_KEY_SECRET=''
     export ACCESS_TOKEN=''
     export ACCESS_TOKEN_SECRET=''
-11. Run `main.py`
-12. If on Cloud9, preview running application.
+12. Run `main.py`
+13. If on Cloud9, preview running application.
+14. Sign up for heroku at heroku.com 
+15. Install heroku by running npm install -g heroku
+16. Go through the following steps:
+    heroku login -i
+    heroku create
+    git push heroku master
+17. Navigate to your newly-created heroku site!
+18. Add your secret keys (from keys.env) by going to https://dashboard.heroku.com/apps
+    and clicking into your app. Click on Settings, then scroll to "Config Vars." Click
+    "Reveal Config Vars" and add the key value pairs for each variable in user_tweets.py
+    Your config var key names should be:
+    SPOON_KEY
+    KEY
+    KEY_SECRET
+    TOKEN
+    TOKEN_SECRET
+19. Configure requirements.txt with all requirements needed to run your app.
+20. Configure Procfile with the command needed to run your app.
+21. If you are still having issues, you may use heroku logs --tail to see what's wrong.
 
 
 ### Known Problem & Additional Feature
