@@ -67,7 +67,7 @@ def index():
     #for loop to parse
     for i in range(len(res['extendedIngredients'])):
         ingred.append(res['extendedIngredients'][i]['name']) #get name of ingredient
-        ingredAmount.append(str(res['extendedIngredients'][i]['measures']['us']['amount']) + res['extendedIngredients'][i]['measures']['us']['unitShort']) #get amount of ingredient
+        ingredAmount.append(str(res['extendedIngredients'][i]['measures']['us']['amount']) + " " + res['extendedIngredients'][i]['measures']['us']['unitShort']) #get amount of ingredient
 
     
     return flask.render_template(
