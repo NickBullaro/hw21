@@ -13,6 +13,8 @@ from dotenv import load_dotenv
 dotenv_path = join(dirname(__file__), 'keys.env')
 load_dotenv(dotenv_path)
 
+#Set API keys 
+spoon_key = os.environ['SPOON_KEY']
 consumer_key = os.environ['CONSUMER_KEY']
 consumer_secret = os.environ['CONSUMER_SECRET']
 access_token = os.environ['ACCESS_TOKEN']
@@ -35,48 +37,46 @@ def index():
     #Twitter--------------------------------------------------------------------------------------------------------------
     searchQuery = keywordList[num] + " -filter:links"#build the search query for tweepy
     
-    tweets = Cursor(auth_api.search, q=searchQuery, lang="en").items(1)#get 5 tweets with keyword in it
+    tweets = Cursor(auth_api.search, q=searchQuery, lang="en").items(1)#get tweet with keyword in it
     for tweet in tweets:
         tweety = "'{}' -@{} {}".format(tweet.text, tweet.user.screen_name, tweet.created_at)#format tweet info
     
     #Spoonacular--------------------------------------------------------------------------------------------------------------
     
-    spoon_key = os.environ['SPOON_KEY']
     api = sp.API(spoon_key)
     url1 = "https://api.spoonacular.com/recipes/complexSearch?apiKey="
     url2 = "&query="
     url3 = "&number=1"
     url = url1 + str(spoon_key) + url2 + keywordList[num] + url3 #combine parts to make whole url
-    response = requests.get(url)
+    response = requests.get(url)#use random keyword to fetch a recipe
     respo = response.json()#make it .json() to select parts
     
-    ID = respo['results'][0]['id']#get ID
+    ID = respo['results'][0]['id']#get ID of recipe
     url = "https://api.spoonacular.com/recipes/" + str(ID) + "/information?apiKey=" + str(spoon_key)#make new url to get specific info
-    respons = requests.get(url)
-    res = respons.json()
+    respons = requests.get(url)#use ID to get all other info needed
+    res = respons.json()#make it .json() to select parts
     
     #get needed info
     title = res['title']
     link = res['image']
-    spoonacularSource = res['sourceUrl']
+    sourceLink = res['sourceUrl']
     servSize = res['servings']
     totTime = res['readyInMinutes']
     ingred = []
     ingredAmount = []
     
-    #for loop to parse
+    #for loop to parse recipe info
     for i in range(len(res['extendedIngredients'])):
         ingred.append(res['extendedIngredients'][i]['name']) #get name of ingredient
-        ingredAmount.append(str(res['extendedIngredients'][i]['measures']['us']['amount']) + " " + res['extendedIngredients'][i]['measures']['us']['unitShort']) #get amount of ingredient
+        ingredAmount.append(str(res['extendedIngredients'][i]['measures']['us']['amount']) + " " + res['extendedIngredients'][i]['measures']['us']['unitShort']) #get amount of ingredient and unit
 
     
     return flask.render_template(
         "index.html",
-        keyWord = keywordList[num],
         ftweet = tweety,
         tit=title,
         lin=link,
-        sourc=spoonacularSource,
+        sourc=sourceLink,
         servin=servSize,
         minutes=totTime,
         len = len(ingred),
