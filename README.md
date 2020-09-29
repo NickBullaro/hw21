@@ -48,7 +48,7 @@ To use this code, you must follow these steps:
 
 
 ### Known Problem & Additional Feature
-1. My only known problem is sometimes when fetching a tweet containing the selected keyword, the keyword is found in the tweet's author rather than the content. In an attempt to avoid this, I created an IF statement that only passed the tweet if the keyword was in the content. This sometimes causes errors, so in the future, I will either figure out a way to ensure a tweet with the keyword in the content is fetched, or I will simply fetch more tweets to decrease the chance of it causing an error.
+1. My only known problem is the API searches always return the same tweet and recipe. The API searches are based on a randomly selected keyword, so in order to fix this I would need to have the API return multiple results and then randomly select one of those each time.
 2. One additional feature I would add would be to include the actual recipe instructions to the web page. The spoonacular API has a "Analyze Recipe Instructions" endpoint that would allow me to fetch the list of instructions for the selected recipe. I would implement this just like I did with the list of ingredients. In main.py, I would run the .get, parse the .json() for each individual step, add them to each a list as a different element, pass the list using Flask, then print out the list in my .html file. I would of course have to "beautify" the page using CSS as well.
 
 
