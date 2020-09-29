@@ -10,8 +10,6 @@ import random
 from os.path import join, dirname
 from dotenv import load_dotenv
 
-#Twitter--------------------------------------------------------------------------------------------------------------
-
 dotenv_path = join(dirname(__file__), 'keys.env')
 load_dotenv(dotenv_path)
 
@@ -32,7 +30,9 @@ app = flask.Flask(__name__)
 @app.route('/') # Python Decorator
 def index():
     keywordList = ["pasta", "pizza", "soup", "cake", "cookies", "rice", "steak", "chicken", "ham", "kebab", "egg", "bagel"]#list of keywords to use
-    num = random.randint(0, 11)#random generator to choose which to search for
+    num = random.randint(0, 11)#random generator to choose which keyword to search for
+    
+    #Twitter--------------------------------------------------------------------------------------------------------------
     searchQuery = keywordList[num] + " -filter:links"#build the search query for tweepy
     
     tweets = Cursor(auth_api.search, q=searchQuery, lang="en").items(1)#get 5 tweets with keyword in it
@@ -45,7 +45,7 @@ def index():
     api = sp.API(spoon_key)
     url1 = "https://api.spoonacular.com/recipes/complexSearch?apiKey="
     url2 = "&query="
-    url3 = "&number=1&includeIngredients"
+    url3 = "&number=1"
     url = url1 + str(spoon_key) + url2 + keywordList[num] + url3 #combine parts to make whole url
     response = requests.get(url)
     respo = response.json()#make it .json() to select parts
@@ -58,7 +58,7 @@ def index():
     #get needed info
     title = res['title']
     link = res['image']
-    spoonacularSource = res['spoonacularSourceUrl']
+    spoonacularSource = res['sourceUrl']
     servSize = res['servings']
     totTime = res['readyInMinutes']
     ingred = []
