@@ -1,5 +1,5 @@
 # project1-nsb38
-## This is a simple outline of my project using the Twitter API, spoonacular API, and flask.
+## This is a simple outline of my project using the Twitter API, spoonacular API, Heroku, and flask.
 Some of this README was taken from Professor Sresht's lecture 6 Heroku example README.
 
 To use this code, you must follow these steps:
@@ -35,13 +35,13 @@ To use this code, you must follow these steps:
 17. Navigate to your newly-created heroku site!
 18. Add your secret keys (from keys.env) by going to https://dashboard.heroku.com/apps
     and clicking into your app. Click on Settings, then scroll to "Config Vars." Click
-    "Reveal Config Vars" and add the key value pairs for each variable in user_tweets.py
+    "Reveal Config Vars" and add the key value pairs for each variable in main.py
     Your config var key names should be:
     SPOON_KEY
-    KEY
-    KEY_SECRET
-    TOKEN
-    TOKEN_SECRET
+    CONSUMER_KEY
+    CONSUMER_KEY_SECRET
+    ACCESS_TOKEN
+    ACCESS_TOKEN_SECRET
 19. Configure requirements.txt with all requirements needed to run your app.
 20. Configure Procfile with the command needed to run your app.
 21. If you are still having issues, you may use heroku logs --tail to see what's wrong.
