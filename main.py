@@ -31,15 +31,21 @@ auth_api = API(auth)
 app = flask.Flask(__name__)
 @app.route('/') # Python Decorator
 def index():
-    keywordList = ["pasta", "pizza", "soup", "cake", "cookies", "rice", "steak", "chicken", "ham", "kebab", "egg", "bagel"]#list of keywords to use
-    num = random.randint(0, 11)#random generator to choose which keyword to search for
+    #keywordList = ["pasta", "pizza", "soup", "cake", "cookies", "rice", "steak", "chicken", "ham", "kebab", "egg", "bagel"]#list of keywords to use
+    keywordList = ["fvrgtfrhbgfdgdjsjstgrggd", "gfsffghgfhgjfjhftjhfghgdutf"]
+    num = random.randint(0, 1)#random generator to choose which keyword to search for
     
     #Twitter--------------------------------------------------------------------------------------------------------------
     searchQuery = keywordList[num] + " -filter:links"#build the search query for tweepy
     
     tweets = Cursor(auth_api.search, q=searchQuery, lang="en").items(1)#get tweet with keyword in it
-    for tweet in tweets:
-        tweety = "'{}' -@{} {}".format(tweet.text, tweet.user.screen_name, tweet.created_at)#format tweet info
+    try:
+        for tweet in tweets:
+            tweety = "'{}' -@{} {}".format(tweet.text, tweet.user.screen_name, tweet.created_at)#format tweet info
+            print(tweety)
+    except StopIteration:
+        tweety = "No tweet was found related to the selected keyword!"
+
     
     #Spoonacular--------------------------------------------------------------------------------------------------------------
     
@@ -50,7 +56,6 @@ def index():
     url = url1 + str(spoon_key) + url2 + keywordList[num] + url3 #combine parts to make whole url
     response = requests.get(url)#use random keyword to fetch a recipe
     respo = response.json()#make it .json() to select parts
-    
     ID = respo['results'][0]['id']#get ID of recipe
     url = "https://api.spoonacular.com/recipes/" + str(ID) + "/information?apiKey=" + str(spoon_key)#make new url to get specific info
     respons = requests.get(url)#use ID to get all other info needed
